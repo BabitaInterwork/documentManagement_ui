@@ -1,0 +1,48 @@
+
+<ngx-sample-layout><router-outlet>
+
+  <nb-card >
+      <nb-card-body>
+
+          <div class="d-flex justify-content-center align-items-center">
+              <h1 class="text-primary">UPLOAD THE DOCUMENT HERE</h1>
+              </div>
+
+      </nb-card-body>
+    </nb-card>
+  <nb-card  status="success">
+
+      <nb-card-header></nb-card-header>
+      <nb-card-body>
+
+
+        <div >
+          <div class="container">
+              <h1 class="text-center display-4">
+               Upload File
+              </h1>
+              <div class="container    text-secondary">
+              <input type="file" name="photo" ng2FileSelect [uploader]="uploader"  class="btn btn-primary btn-sm mr-auto" />
+              <button type="button" class="btn btn-success btn-s  float-right"
+                    (click)="uploader.uploadAll()"
+                    [disabled]="!uploader.getNotUploadedItems().length">
+                    Upload
+              </button>
+              </div>
+            </div>
+        </div>
+
+
+      </nb-card-body>
+      <nb-card-footer></nb-card-footer>
+
+
+    </nb-card>
+    <nb-card>
+      <nb-card-body>
+    <nb-progress-bar [value]="progress" status="info" size="xlg" [displayValue]="true"></nb-progress-bar>
+      </nb-card-body>
+    </nb-card>
+
+
+</router-outlet></ngx-sample-layout>

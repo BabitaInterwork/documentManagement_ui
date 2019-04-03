@@ -1,0 +1,89 @@
+<ngx-sample-layout>
+  <router-outlet>
+
+      <nb-card>
+          <nb-card-body>
+
+            <!-- <form  name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate >
+              <div class="text-center mb-5">
+                <img class="mb-4" src="../../../assets/intrwork.png" alt="Interwork"  class="center" width="72" height="72">
+
+
+              </div>
+
+                <input type="text" name="username"  required nbInput fullWidth status="info" placeholder="Username" id="input" [(ngModel)]="model.username" #username="ngModel" class="mb-3 mu-3">
+
+                <input type="password" name="password"  required  nbInput fullWidth status="info" placeholder="password"  (ngModel)]="model.password" #password="ngModel"  class="mb-3">
+
+
+
+
+                <button [disabled]="loading" class="btn btn-primary">Login</button>
+
+            </form> -->
+
+
+
+<div  id="loginsection">
+
+  <div class="row"   >
+      <div class="  text-center   align-center"  class="col-md-6 mx-auto">
+          <div   id="#login-section">
+
+
+              <div class="text-center mu-5 pu-5 mb-5  center"  id="login" >
+
+                  <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate  class="form-signin">
+                      <img class="mb-4" src="../../assets/interwork.png" alt="Interwork" width="72" height="72">
+                      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+                      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                          <label for="username" class="sr-only">Username</label>
+
+                          <input type="text" class="form-control"   name="username" id="input" [(ngModel)]="model.username" #username="ngModel" required  autofocus  placeholder="username" />
+                          <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+                      </div>
+
+                      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                          <label for="password "  class="sr-only">Password</label>
+
+                          <input type="password"  id="inputPassword"   placeholder="password"
+                          class="sr-only"class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+                          <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                      </div>
+
+                      <div class="checkbox mb-3">
+                          <label>
+                            <input type="checkbox" value="remember-me"> Remember me
+                          </label>
+                        </div>
+
+                      <div class="btn btn-lg btn-primary btn-block" >
+                          <button [disabled]="loading" class="btn btn-primary">Login</button>
+
+
+                      </div>
+
+                  </form>
+                </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+
+</div>
+
+
+          </nb-card-body>
+
+        </nb-card>
+
+</router-outlet>
+
+</ngx-sample-layout>
