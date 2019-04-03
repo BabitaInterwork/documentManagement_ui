@@ -16,12 +16,6 @@ export class DocRequestService {
   constructor(private http: HttpClient) { }
 
   ngOnInit(){
-    
-// var user=   localStorage.getItem('currentUser')
-// console.log("user===",user);
-// var ObUser=JSON.parse(user);
-// console.log("ObUSrer",ObUser);
-// this.authToken=  ObUser.token;
 
   }
 
@@ -31,7 +25,7 @@ getToken(){
 
   var ObUser=JSON.parse(user);
 
-  this.authToken= 'Bearer '+ObUser.token;
+  this.authToken= ObUser.token;
 
 
 
@@ -40,13 +34,11 @@ getToken(){
   getDocs() {
 
 this.getToken()
-console.log(`authToken  ${this.authToken}`);
-
   const headers = new HttpHeaders({
     'Content-Type':  'application/json',
     'Authorization': 'Bearer '+this.authToken
   });
-  console.log("my token",this.authToken)
+
     return this.http.get(this.configUrl,{headers:headers});
 
   }

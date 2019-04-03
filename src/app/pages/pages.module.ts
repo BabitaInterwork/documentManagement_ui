@@ -12,7 +12,12 @@ import { HomeComponent } from './home/home.component';
 import {FileUploadComponent} from './file-upload/file-upload.component'
 import { FileSelectDirective } from 'ng2-file-upload';
 import { from } from 'rxjs';
-import {AuthGuard}   from '../guards/auth.guard'
+import {AuthGuard}   from '../guards/auth.guard';
+import { DownloadDocComponent } from './download-doc/download-doc.component' ;
+import {FileServiceService} from '../services/file-service.service'
+import {DocRequestService }  from '../services/doc-request.service'
+import {NgxPaginationModule} from 'ngx-pagination';
+import { LogoutComponent } from './logout/logout.component';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -25,6 +30,7 @@ const PAGES_COMPONENTS = [
      MiscellaneousModule,
      FormsModule ,
      ReactiveFormsModule,
+     NgxPaginationModule
 
   ],
   declarations: [
@@ -34,10 +40,16 @@ const PAGES_COMPONENTS = [
     IndexComponent,
     HomeComponent,
     FileSelectDirective,
-    FileUploadComponent
+    FileUploadComponent,
+    DownloadDocComponent,
+    LogoutComponent
 
   ],
-  providers:[AuthGuard]
+  providers:[
+    AuthGuard ,
+    DocRequestService,
+    FileServiceService
+  ]
 })
 export class PagesModule {
 }

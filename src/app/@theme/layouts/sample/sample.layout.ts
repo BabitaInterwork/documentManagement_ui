@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { delay, withLatestFrom, takeWhile } from 'rxjs/operators';
 import {AuthGuard} from '../../../guards/auth.guard'
 
+
 import {
   NbMediaBreakpoint,
   NbMediaBreakpointsService,
@@ -78,11 +79,6 @@ getauth() : boolean{
 
   }
 }
-logOut(){
-  this.AuthService.onLogoutClick()
-
-}
-
 
   items = [
     {
@@ -98,15 +94,15 @@ logOut(){
 
     },
     {
-      title: 'Logout',
+      title: 'LOGOUT',
       link: 'logout',
       icon: 'ion ion-android-radio-button-off',
       hidden: ! this.getauth(),
-      onclick :this.logOut()
+          
 
     },
     {
-      title: 'Login',
+      title: 'LOGIN',
       link: 'login',
       icon: 'ion ion-android-radio-button-off',
       hidden: this.getauth()

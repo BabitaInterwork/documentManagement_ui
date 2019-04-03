@@ -14,12 +14,25 @@ export class FileServiceService {
 
 
   ngOnInit(){
-   this.authToken= JSON.parse(localStorage.getItem("currentUser")).token
+
+  }
+
+
+
+
+  getToken(){
+    var user=   localStorage.getItem('currentUser')
+
+    var ObUser=JSON.parse(user);
+
+    this.authToken= ObUser.token;
+
+
 
   }
 
   downloadFile(filepath:String,filename:String ){
-
+    this.getToken()
     var body = {filename:filename ,  filepath:filepath };
 
 
@@ -37,8 +50,8 @@ export class FileServiceService {
 }
 
 showversion(event,filename:String){
+  this.getToken()
   console.log('====in showversion=====')
-
 
   const headers = new HttpHeaders({
     'Content-Type':  'application/json',
