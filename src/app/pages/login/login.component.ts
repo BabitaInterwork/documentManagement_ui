@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticateService,
-    
+
     private http: HttpClient
 
 
@@ -46,41 +46,23 @@ this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   login() {
 
     this.loading = true;
-    
-    console.log('hello !')
+
     this.authenticationService.login(this.model.username, this.model.password)
     .subscribe(
-        data => { 
-            // this.setToken()
-     
-            var myToken =   this.setToken()
-       console.log("my token " ,myToken);
-        this.http.post(appConfig.apiUrl + '/users/token' ,{'token' : myToken}).subscribe( data =>{
-            console.log(data);
-        } )
+        data => {
+
             this.router.navigate([this.returnUrl]);
-      
-            
+
+
         },
         error => {
-           
+
             this.loading = false;
-            
+
         })
-     
+
     }
-  
-    setToken(){
-    
-    let tokenFromLocalStroage=localStorage.getItem('currentUser')
-    console.log(typeof  tokenFromLocalStroage);
-    // console.log(`tokenFromLocalStroage  ${tokenFromLocalStroage}`);
-    // let tokenn= JSON.parse(tokenFromLocalStroage);
-    // console.log("as tokenn",tokenn);
-    
-     var myToken=   tokenFromLocalStroage;
-    return myToken;
-    }
+
 
 
 

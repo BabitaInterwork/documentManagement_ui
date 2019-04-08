@@ -16,7 +16,10 @@ export class FileUploadComponent implements OnInit {
   constructor() { }
 
 
-  public uploader:FileUploader = new FileUploader({url: URL ,authToken: 'Bearer '+JSON.parse(localStorage.getItem('currentUser')).token , itemAlias: 'photo'});
+  public uploader:FileUploader = new FileUploader({url: URL ,authToken: 'Bearer '+JSON.parse(localStorage.getItem('currentUser')).token,
+
+  additionalParameter: {user:JSON.stringify(localStorage.getItem('currentUser'))},
+   itemAlias: 'photo'});
 
 
 
