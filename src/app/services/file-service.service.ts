@@ -1,68 +1,53 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import {Observable} from 'rxjs';
-
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FileServiceService {
-  authToken
+  authToken;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {}
 
+  ngOnInit() {}
 
-  ngOnInit(){
+  getToken() {
+    var user = localStorage.getItem('currentUser');
 
+    var ObUser = JSON.parse(user);
+
+    this.authToken = ObUser.token;
   }
 
-
-
-
-  getToken(){
-    var user=   localStorage.getItem('currentUser')
-
-    var ObUser=JSON.parse(user);
-
-    this.authToken= ObUser.token;
-
-
-
-  }
-
-  downloadFile(filepath:String,filename:String ){
-    this.getToken()
-    var body = {filename:filename ,  filepath:filepath };
-
+  downloadFile(filepath: String, fileOriginalname: String, filename: String, hash: String) {
+    this.getToken();
+    var body = { filename: filename, filepath: filepath, fileOriginalname: fileOriginalname, hash: hash };
 
     const headers = new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': 'Bearer '+this.authToken
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.authToken,
     });
 
-
-    return this.http.post('http://localhost:4000/doc/download',body,{
-        responseType : 'blob',
-        headers:headers
-
+    return this.http.post('http://localhost:4000/doc/download', body, {
+      responseType: 'blob',
+      headers: headers,
     });
-}
+  }
 
-showversion(event,filename:String){
-  this.getToken()
-  console.log('====in showversion=====')
+  showversion(event, filename: String) {
+    this.getToken();
+    console.log('====in showversion=====');
 
-  const headers = new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'Bearer '+this.authToken
-  });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.authToken,
+    });
 
-  var body = {filename:filename};
-   return  this.http.post('http://localhost:4000/doc/getVersion',JSON.stringify(body),{
-      headers:headers
-  })
-
-}
-
+    var body = { filename: filename };
+    return this.http.post('http://localhost:4000/doc/getVersion', JSON.stringify(body), {
+      headers: headers,
+    });
+  }
 }

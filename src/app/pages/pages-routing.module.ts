@@ -34,7 +34,8 @@ path: 'upload',
       },
       {
         path: 'download',
-         component:DownloadDocComponent
+         component:DownloadDocComponent ,
+         canActivate: [AuthGuard]
         },
         {
           path: 'logout',

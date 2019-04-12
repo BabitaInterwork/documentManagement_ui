@@ -1,66 +1,70 @@
 <ngx-sample-layout>
   <router-outlet>
-      <div *ngIf= "_loading" class="text-center" >
+    <div *ngIf="_loading" class="text-center">
+      <img src="../../assets/spinner.gif" alt="Please wait..." />
+    </div>
 
-          <img src="../../assets/spinner.gif"  alt="Please wait..." />
-
-        </div>
-
-      <nb-card  status="success">
+    <nb-card status="success">
       <nb-card-header><h2>files</h2></nb-card-header>
       <nb-card-body>
-      <nb-accordion multi>
-      <nb-accordion-item   *ngFor="let document of data |paginate: { itemsPerPage: 5, currentPage: p }; let i = index" >
-
-
-        <nb-accordion-item-header  (click)="showversion($event,document.Record.orginalname)"  (click)="current = i">
-          {{document.Record.orginalname}}
-        </nb-accordion-item-header>
-        <nb-accordion-item-body   id="collapse1" class="panel-collapse" [class.collapse]='current != i'>
-          <table class="table"  accent="danger" size="xsmall" [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">name of document</th>
-                <th scope="col">author</th>
-                <th scope="col">timestamp</th>
-                <th scope="col">version</th>
-                 <th scope="col">download</th>
-              </tr>
-            </thead>
-            <tbody id="table2" *ngFor="let doc of versionfiles;let j = index">
-              <tr colspan="4" id="tablerow2">
-                <th scope="row">{{doc.orginalname}}</th>
-                <td>{{doc.author}}</td>
-                <td>{{doc.timestamp}}</td>
-                <td>Version  : {{doc.version}}</td>
-                <td>
-                 <button nbButton status="danger" size="medium" (click)="downloadFile($event, doc.path,doc.orginalname)"
-                nbSpinnerStatus="danger" nbSpinnerMessage="">
-                 Download
-                </button>
-                </td>
-              </tr>
-              </tbody>
+        <nb-accordion multi>
+          <nb-accordion-item
+            *ngFor="let document of (data | paginate: { itemsPerPage: 5, currentPage: p }); let i = index"
+          >
+            <nb-accordion-item-header (click)="showversion($event, document.Record.orginalname)" (click)="current = i">
+              {{ document.Record.orginalname }}
+            </nb-accordion-item-header>
+            <nb-accordion-item-body id="collapse1" class="panel-collapse" [class.collapse]="current != i">
+              <table
+                class="table"
+                accent="danger"
+                size="xsmall"
+                [nbSpinner]="loading"
+                nbSpinnerStatus="danger"
+                nbSpinnerSize="xlarge"
+              >
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">name of document</th>
+                    <th scope="col">author</th>
+                    <th scope="col">timestamp</th>
+                    <th scope="col">version</th>
+                    <th scope="col">download</th>
+                  </tr>
+                </thead>
+                <tbody id="table2" *ngFor="let doc of versionfiles; let j = index">
+                  <tr colspan="4" id="tablerow2">
+                    <th scope="row">{{ doc.orginalname }}</th>
+                    <td>{{ doc.author }}</td>
+                    <td>{{ doc.timestamp }}</td>
+                    <td>Version : {{ doc.version }}</td>
+                    <td>
+                      <button
+                        nbButton
+                        status="danger"
+                        size="medium"
+                        (click)="downloadFile($event, doc.path, doc.orginalname, doc.filename, doc.hash)"
+                        nbSpinnerStatus="danger"
+                        nbSpinnerMessage=""
+                      >
+                        Download
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
               </table>
-        </nb-accordion-item-body>
-      </nb-accordion-item>
-  </nb-accordion>
-  </nb-card-body>
-
-</nb-card>
-  <nb-card>
-    <nb-card-header></nb-card-header>
-    <nb-card-body>
-       <div id="paginationcontrol" class="d-flex justify-content-center align-items-center"><pagination-controls (pageChange)="p = $event"></pagination-controls></div>
-
-  </nb-card-body>
-  </nb-card>
-
-
-
-
-
-
-
-</router-outlet>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+      </nb-card-body>
+    </nb-card>
+    <nb-card>
+      <nb-card-header></nb-card-header>
+      <nb-card-body>
+        <div id="paginationcontrol" class="d-flex justify-content-center align-items-center">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </router-outlet>
 </ngx-sample-layout>

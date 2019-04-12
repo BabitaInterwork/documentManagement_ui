@@ -83,27 +83,26 @@ getauth() : boolean{
   items = [
     {
       title: 'UPLOAD',
-      link: 'upload',
+      link: '/pages/upload',
       icon: 'ion ion-android-radio-button-off',
 
     },
     {
       title: 'DOWNLOAD',
-      link: 'download',
+      link: '/pages/download',
       icon: 'ion ion-android-radio-button-off',
 
     },
     {
       title: 'LOGOUT',
-      link: 'logout',
+      link: '/pages/logout',
       icon: 'ion ion-android-radio-button-off',
       hidden: ! this.getauth(),
-          
 
     },
     {
       title: 'LOGIN',
-      link: 'login',
+      link: '/pages/login',
       icon: 'ion ion-android-radio-button-off',
       hidden: this.getauth()
     },
